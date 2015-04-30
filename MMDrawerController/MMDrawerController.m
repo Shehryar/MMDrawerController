@@ -1379,7 +1379,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
         }
     }
     else{
-        if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
+        if (![gestureRecognizer isKindOfClass:[UIScreenEdgePanGestureRecognizer class]]) {
             MMCloseDrawerGestureMode possibleCloseGestureModes = [self possibleCloseGestureModesForGestureRecognizer:gestureRecognizer
                                                                                                            withTouch:touch];
             return ((self.closeDrawerGestureModeMask & possibleCloseGestureModes)>0);
@@ -1389,6 +1389,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 
 #pragma mark Gesture Recogizner Delegate Helpers
 -(MMCloseDrawerGestureMode)possibleCloseGestureModesForGestureRecognizer:(UIGestureRecognizer*)gestureRecognizer withTouch:(UITouch*)touch{
+    NSLog(@"LOOK HERE AIGHT");
     CGPoint point = [touch locationInView:self.childControllerContainerView];
     MMCloseDrawerGestureMode possibleCloseGestureModes = MMCloseDrawerGestureModeNone;
     if([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]){
@@ -1400,6 +1401,7 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
         }
     }
     else if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
+        NSLog(@"LOOKING FOR THAT PAN");
         if([self isPointContainedWithinNavigationRect:point]){
             possibleCloseGestureModes |= MMCloseDrawerGestureModePanningNavigationBar;
         }
