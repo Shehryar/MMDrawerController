@@ -44,7 +44,7 @@
  
  @param panGesture The pan gesture recognizer instance that triggered the callback
  */
--(void)panGestureCallback:(UIPanGestureRecognizer *)panGesture __attribute((objc_requires_super));
+-(void)panGestureCallback:(UIScreenEdgePanGestureRecognizer *)panGesture __attribute((objc_requires_super));
 
 /**
  A `UIGestureRecognizerDelegate` method that is queried by `MMDrawerController`'s gestures to determine if it should receive the touch.
